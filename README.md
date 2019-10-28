@@ -1,13 +1,31 @@
 # BlueROV2_USBL
 
-Warning: This project is a WIP, and is highly cuztomized for my application. Its usefullness to others is likely very limited. 
+## Installing:
 
+With python3.6 or later, the following command will install all dependencies locally:
+```
+pip3 install --user git+https://github.com/rotu/BlueROV2_USBL.git
+```
 
-## Setup
+You should then be able to run the command:
+```
+$ usbl_relay
+usage: usbl_relay [-h] [-u /dev/ttyUSB#] [-g /dev/ttyXXX#] [-e localhost:port]
+                  [-m host:port] [--log level]
+usbl_relay: error: GPS and USBL devices must be specified
 
-Give our location to QGroundControl
+Serial devices detected:
+  /dev/cu.Bluetooth-Incoming-Port - n/a
+  /dev/cu.DansCans-SPPDev - n/a
+```
 
-socat -u FILE:/dev/ttyACM0,b4800,raw,ignoreeof UDP4-DATAGRAM:192.168.2.1:14401,reuseaddr,ignoreeof
+## Building for distribution:
 
-Set up the serial port for the USBL
-stty -F /dev/ttyUSB0 115200 -brkint -icrnl -imaxbel -opost -isig -icanon -iexten -echo -echoe -echok -echoctl -echoke
+To package it up for consumption on another machine:
+```
+git clone https://github.com/rotu/BlueROV2_USBL.git
+cd BlueROV2_USBL
+pip3 install pyinstaller git+https://github.com/rotu/BlueROV2_USBL.git -t build
+env PYTHONPATH="build" python3 -m PyInstaller usbl_relay.spec
+```
+You will find the executable file in the `dist` subfolder.

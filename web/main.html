@@ -1,0 +1,67 @@
+<html>
+<head>
+    <title>USBL Relay</title>
+    <script src="main.js"></script>
+    <style>
+        input:invalid {
+            color: red;
+        }
+
+        li.error::before {
+            content: "! "
+        }
+
+        li.error {
+            list-style: none;
+            color: darkred;
+        }
+
+        li.warning::before {
+            content: "? "
+        }
+
+        li.warning {
+            list-style: none;
+            color: darkgoldenrod;
+        }
+
+        li.info::before {
+            content: "\2026 "
+        }
+
+        li.info {
+            list-style: none;
+        }
+    </style>
+</head>
+<h2>devices</h2>
+<table>
+    <tr>
+        <td><label>GPS device</label></td>
+        <td><select id='sel_dev_gps'>
+            <option value="">None Selected</option>
+        </select></td>
+        <td><input id='gps_ok' type="checkbox"></td>
+    </tr>
+    <tr>
+        <td><label>USBL device</label></td>
+        <td><select id='sel_dev_usbl'>
+            <option value="">None Selected</option>
+        </select></td>
+        <td><input id='usbl_ok' type="checkbox"></td>
+    </tr>
+    <tr>
+        <td><label>GPS echo address</label></td>
+        <td><input id='input_echo' placeholder="host:port" required pattern="\S*:\d+" value="localhost:27000"/></td>
+        <td><input id='echo_ok' type="checkbox" checked="checked"></td>
+    </tr>
+    <tr>
+        <td><label>MAV address</label></td>
+        <td><input id='input_mav' placeholder="host:port" required pattern="\S*:\d+" value="192.168.2.2:25100"/></td>
+        <td><input id='mav_ok' type="checkbox" checked="checked"></td>
+    </tr>
+</table>
+<hr />
+<h2>events</h2>
+<ul id="event_log"></ul>
+</html>
